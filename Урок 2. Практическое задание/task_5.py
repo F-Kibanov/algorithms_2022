@@ -19,3 +19,17 @@
 
 Допускается исп-е встроенных ф-ций
 """
+
+
+def chr_row(ascii_val=32):
+    if ascii_val == 128:
+        return True
+    print(f'{ascii_val} - {chr(ascii_val)}', end=' ')
+    if not (ascii_val - 31) % 10:
+        print('\n')
+
+    chr_row(ascii_val + 1)
+
+
+if __name__ == '__main__':
+    chr_row()

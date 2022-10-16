@@ -13,3 +13,20 @@
 
 Решите через рекурсию. В задании нельзя применять циклы.
 """
+
+
+def recur_identity(n):
+    if n == 1:
+        return n
+    else:
+        return recur_identity(n - 1) + n
+
+
+try:
+    numb = int(input('Введите число: '))
+    if recur_identity(numb) == numb * (numb + 1) / 2:
+        print('Равенство верное!')
+    else:
+        print('Равенство неверное!')
+except ValueError:
+    print('Неверные данные. Исправтесь!')
