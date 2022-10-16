@@ -15,3 +15,22 @@
 и одного из алгоритмов, например, sha512
 Можете усложнить задачу, реализовав ее через ООП
 """
+
+import hashlib
+from uuid import uuid4
+
+urls_cache = {}
+salt = uuid4().hex
+
+
+def caching_urls(url: str):
+    if urls_cache.get(url):
+        return f'URL-адрес найден, его хэш: {urls_cache.get(url)}'
+    else:
+        url_hash = hashlib.sha256((url + salt).encode('utf-8')).hexdigest()
+        urls_cache.setdefault(url, url_hash)
+        return f'Страница {url} закеширована! Ее хеш: {url_hash}'
+
+
+if __name__ == '__main__':
+    print(caching_urls('www.tr.ru'))
