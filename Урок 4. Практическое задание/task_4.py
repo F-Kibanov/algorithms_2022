@@ -9,6 +9,8 @@
 Обязательно напишите третью версию (здесь возможно даже решение одной строкой).
 Сделайте замеры и опишите, получилось ли у вас ускорить задачу
 """
+from timeit import timeit
+from collections import Counter
 
 array = [1, 3, 1, 3, 4, 5, 1]
 
@@ -37,5 +39,19 @@ def func_2():
            f'оно появилось в массиве {max_2} раз(а)'
 
 
-print(func_1())
-print(func_2())
+"""
+Самое простое решение - использовать функцию Counter из встроенного модуля
+collections. При этом такое решение оказывается самым медленным, так как
+метод most_common каждый раз возвращает список кортежей, в которых содержатся 
+элемент массива и количество его вхождений.
+"""
+
+
+def func_3():
+    return Counter(array).most_common(1)[0][0]
+
+
+if __name__ == '__main__':
+    print(timeit('func_1()', globals=globals(), number=1000))
+    print(timeit('func_2()', globals=globals(), number=1000))
+    print(timeit('func_3()', globals=globals(), number=1000))
