@@ -36,32 +36,29 @@ def recursion_calc():
         return
     else:
         if operation in '+-*/':
-            try:
-                num_1 = int(input('Введите первое число: '))
-                num_2 = int(input('Введите второе число: '))
-                if operation == '+':
-                    print(f'Результат операции: {num_1 + num_2}')
-                    return recursion_calc()
-                elif operation == '-':
-                    print(f'Результат операции: {num_1 - num_2}')
-                    return recursion_calc()
-                elif operation == '-':
-                    print(f'Результат операции: {num_1 - num_2}')
-                    return recursion_calc()
-                elif operation == '*':
-                    print(f'Результат операции: {num_1 * num_2}')
-                    return recursion_calc()
-                elif operation == '/':
-                    if num_2 == 0:
-                        print(f'На ноль делить нельзя!')
-                    else:
-                        print(f'Результат операции: {num_1 / num_2}')
-                    return recursion_calc()
-            except ValueError:
-                print('Некорректный символ. Введите число!')
+            num_1 = int(input('Введите первое число: '))
+            num_2 = int(input('Введите второе число: '))
+            if operation == '+':
+                print(f'Результат операции: {num_1 + num_2}')
                 return recursion_calc()
+            elif operation == '-':
+                print(f'Результат операции: {num_1 - num_2}')
+                return recursion_calc()
+            elif operation == '-':
+                print(f'Результат операции: {num_1 - num_2}')
+                return recursion_calc()
+            elif operation == '*':
+                print(f'Результат операции: {num_1 * num_2}')
+                return recursion_calc()
+            elif operation == '/':
+                if num_2 == 0:
+                    print(f'На ноль делить нельзя!')
+                else:
+                    print(f'Результат операции: {num_1 / num_2}')
+                return recursion_calc()
+
         else:
-            print('Некорректный символ. Попробуйте еще раз!')
+            print('Некорректный символ. Введите один из: +, -, *, / или 0 для выхода')
             return recursion_calc()
 
 

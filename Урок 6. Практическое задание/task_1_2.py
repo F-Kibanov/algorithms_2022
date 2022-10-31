@@ -30,3 +30,52 @@
 
 Это файл для второго скрипта
 """
+from numpy import array
+from numpy import append
+
+from memory_profiler import profile
+
+"""
+Задание №2 из курса 'Знакомство с языком Python'
+Напишите программу, которая принимает на вход число N и выдает набор 
+произведений чисел от 1 до N.
+"""
+
+
+# Оригинальное решение
+@profile
+def factor(n):
+    print("Оригинальное решение")
+    previous_result = 1
+    my_list = []
+    for i in range(1, n+1):
+        i *= previous_result
+        my_list.append(i)
+        previous_result = i
+    # print(my_list)
+
+
+# Оптимизированное решение
+@profile
+def factor_optimized(n):
+    print("Оптимизированное решение")
+
+    def wrapped():
+        my_list = array([])
+        previous_result = 1
+        for i in range(1, n+1):
+            i *= previous_result
+            my_list = append(my_list, i)
+            previous_result = i
+        yield my_list
+    return wrapped()
+
+
+if __name__ == '__main__':
+    print(factor(10000))
+    print(factor_optimized(10000))
+
+"""
+При больших значениях N удается сэкономить значительное количество памяти
+за счет использования функции генератора и numpy.ndarray.
+"""
