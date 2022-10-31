@@ -13,8 +13,8 @@ from random import randint
 
 def guess_number(n, count=1):
     print(f'Попытка №{count}')
-    answer = int(input('Введите число от 0 до 100: '))
-    if count == 10 or answer == n:
+    answer = int(input('Введите число от 0 до 1000: '))
+    if count == 12 or answer == n:
         if answer == n:
             print('Верно!')
             return

@@ -30,3 +30,45 @@
 
 Это файл для четвертого скрипта
 """
+from random import randint
+
+from memory_profiler import profile
+import numpy as np
+from numpy import array
+
+"""
+Задание №4 из курса 'Знакомство с языком Python'
+Задайте последовательность чисел. Напишите программу, которая выведет
+список неповторяющихся элементов исходной последовательности.
+"""
+
+
+# Оригинальное решение
+@profile
+def unique(my_list: list) -> list:
+    result = [i for i in my_list if my_list.count(i) == 1]
+    return result
+
+
+# Оптимизированное решение
+@profile
+def unique_optimized(my_array: array) -> array:
+    result = array([])
+    for i in my_array:
+        if np.count_nonzero(my_array == i) == 1:
+            result = np.append(result, i)
+    return result
+
+
+if __name__ == '__main__':
+    my_list = [randint(0, 100) for i in range(100)]
+    my_array = array(my_list)
+    print(unique(my_list))
+    print(unique_optimized(my_array))
+
+
+"""
+Оптимизировать потребление памяти при помощи numpy.ndarray не получилось,
+при увеличении размера входного списка потребление памяти в оптимизированной 
+функции может даже превышать потребление исходной..
+"""
