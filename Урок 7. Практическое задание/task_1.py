@@ -24,16 +24,16 @@ from timeit import timeit
 rand_arr = [randint(-100, 101) for i in range(10)]
 
 
-def bubble_sort(rand_list: list) -> list:
+def bubble_sort(rand_list: list):
     my_list = rand_list[:]
     for i in range(len(my_list)):
         for j in range(len(my_list) - 1):
             if my_list[j] < my_list[j + 1]:
                 my_list[j], my_list[j + 1] = my_list[j + 1], my_list[j]
-    return my_list
+    return f'\t\tИсходный массив: {rand_list}\n\t\t\t\t\t\t\t\t\tОтсортированный массив: {my_list}'
 
 
-def bubble_sort_optimized(rand_list: list) -> list:
+def bubble_sort_optimized(rand_list: list):
     my_list = rand_list[:]
     count = 0
     flag = True
@@ -45,11 +45,11 @@ def bubble_sort_optimized(rand_list: list) -> list:
                 flag = True
         count += 1
     # print(f'Кличество проходов: {count}')
-    return my_list
+    return f'\t\tИсходный массив: {rand_list}\n\t\t\t\t\t\t\t\t\tОтсортированный массив: {my_list}'
 
 
 if __name__ == '__main__':
-    print(f'Исходный массив:             {rand_arr}')
+    print(f'Исходный массив:\t\t\t\t\t\t\t\t\t {rand_arr}')
     print(f'Сортировка пузырьком:        {bubble_sort(rand_arr)}')
     print(f'Оптимизированная сортировка: {bubble_sort_optimized(rand_arr)}')
     # Замеры времени:
