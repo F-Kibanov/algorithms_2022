@@ -16,3 +16,25 @@
 
 В конце сделайте аналитику какой трех из способов оказался эффективнее
 """
+from random import randint
+from statistics import median
+from timeit import timeit
+
+
+def builtin_median_search(m: int):
+    rand_arr = [randint(-100, 101) for _ in range(2 * m + 1)]
+    return f'{"-" * 50}\nm = {m}, Медиана = {median(rand_arr)}'
+
+
+if __name__ == '__main__':
+    print(builtin_median_search(10))
+    print(f'Время поиска медианы: {timeit("builtin_median_search(10)", globals=globals(), number=10)}')
+    print(builtin_median_search(100))
+    print(f'Время поиска медианы: {timeit("builtin_median_search(100)", globals=globals(), number=10)}')
+    print(builtin_median_search(1000))
+    print(f'Время поиска медианы: {timeit("builtin_median_search(1000)", globals=globals(), number=10)}')
+
+"""
+Встроенный метод statistics.median оказался на порядок быстрее всех,
+что, в общем то, неудивительно
+"""

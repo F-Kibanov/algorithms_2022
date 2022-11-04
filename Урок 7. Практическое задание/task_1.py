@@ -18,3 +18,45 @@
 Подсказка: обратите внимание, сортируем не по возрастанию, как в примере,
 а по убыванию.
 """
+from random import randint
+from timeit import timeit
+
+rand_arr = [randint(-100, 101) for i in range(10)]
+
+
+def bubble_sort(rand_list: list):
+    my_list = rand_list[:]
+    for i in range(len(my_list)):
+        for j in range(len(my_list) - 1):
+            if my_list[j] < my_list[j + 1]:
+                my_list[j], my_list[j + 1] = my_list[j + 1], my_list[j]
+    return f'\t\tИсходный массив: {rand_list}\n\t\t\t\t\t\t\t\t\tОтсортированный массив: {my_list}'
+
+
+def bubble_sort_optimized(rand_list: list):
+    my_list = rand_list[:]
+    count = 0
+    flag = True
+    while flag:
+        flag = False
+        for _ in range(len(my_list) - count - 1):
+            if my_list[_] < my_list[_ + 1]:
+                my_list[_], my_list[_ + 1] = my_list[_ + 1], my_list[_]
+                flag = True
+        count += 1
+    # print(f'Кличество проходов: {count}')
+    return f'\t\tИсходный массив: {rand_list}\n\t\t\t\t\t\t\t\t\tОтсортированный массив: {my_list}'
+
+
+if __name__ == '__main__':
+    print(f'Исходный массив:\t\t\t\t\t\t\t\t\t {rand_arr}')
+    print(f'Сортировка пузырьком:        {bubble_sort(rand_arr)}')
+    print(f'Оптимизированная сортировка: {bubble_sort_optimized(rand_arr)}')
+    # Замеры времени:
+    print(f'Время сортировки пузырьком:         {timeit("bubble_sort(rand_arr)", globals=globals(), number=1000)}')
+    print(f'Время оптимизированной сортировки:  {timeit("bubble_sort_optimized(rand_arr)", globals=globals(), number=1000)}')
+
+"""
+Оптимизация алгоритма сортировки пузырьком позволила сократить время выполнения
+на ~30%
+"""
